@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.example.books.databinding.FragmentFavoritesBinding
 import com.example.books.viewModels.FavoritesViewModel
@@ -14,8 +15,12 @@ class FavoritesFragment : Fragment() {
 
     private var _binding: FragmentFavoritesBinding? = null
 
+    //    delegando instanciacao da VM para o androidx
+    private val favoritesViewModel: FavoritesViewModel by viewModels()
+
     // This property is only valid between onCreateView and
     // onDestroyView.
+
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -23,17 +28,11 @@ class FavoritesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val favoritesViewModel =
-            ViewModelProvider(this).get(FavoritesViewModel::class.java)
+
 
         _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
-        val textView: TextView = binding.textFavorites
-        favoritesViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+        return binding.root
     }
 
     override fun onDestroyView() {
