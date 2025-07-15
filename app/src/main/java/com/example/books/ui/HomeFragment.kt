@@ -8,7 +8,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.books.databinding.FragmentHomeBinding
+import com.example.books.ui.adapters.BookAdapter
 import com.example.books.viewModels.HomeViewModel
 
 class HomeFragment : Fragment() {
@@ -22,14 +24,23 @@ class HomeFragment : Fragment() {
 //    delegando instanciacao da VM para o androidx
     private val homeViewModel: HomeViewModel by viewModels()
 
+    private val adapter : BookAdapter = BookAdapter()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-
+//       1. inflar elemento recyclerView
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+//        2.criar o layout manager
+        binding.recyclerBooks.layoutManager = LinearLayoutManager(context)
+
+//      3. criacao do adapter
+        binding.recyclerBooks.adapter = adapter
+
 
         return binding.root
     }
