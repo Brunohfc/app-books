@@ -13,7 +13,7 @@ import com.example.books.ui.viewholders.BookViewHolder
 class BookAdapter : RecyclerView.Adapter<BookViewHolder>() {
 
 //    pegando os dados da entidade e manupilando no adpater
-    private val books = mutableListOf<BookEntity>()
+    private var books: List<BookEntity> = listOf()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
@@ -27,5 +27,9 @@ class BookAdapter : RecyclerView.Adapter<BookViewHolder>() {
 
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
         holder.bind(books[position])
+    }
+
+    fun updateBooks(list: List<BookEntity>){
+        books = list
     }
 }

@@ -41,6 +41,9 @@ class HomeFragment : Fragment() {
 //      3. criacao do adapter
         binding.recyclerBooks.adapter = adapter
 
+//        buscando os dados no repository
+        homeViewModel.getBooks()
+        setObserve() // observando as mudanca na homeView
 
         return binding.root
     }
@@ -48,5 +51,11 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun setObserve(){
+        homeViewModel.books.observe(viewLifecycleOwner){
+            adapter.updateBooks(it)
+        }
     }
 }

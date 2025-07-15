@@ -10,6 +10,6 @@ class BookViewHolder(private val item : ItemsBookBinding)
     : RecyclerView.ViewHolder(item.root) {
 
         fun bind(book: BookEntity){
-
+            item.textViewBookTitle.text = book.title
         }
 }
