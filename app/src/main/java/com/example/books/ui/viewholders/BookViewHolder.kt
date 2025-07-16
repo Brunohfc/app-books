@@ -11,5 +11,7 @@ class BookViewHolder(private val item : ItemsBookBinding)
 
         fun bind(book: BookEntity){
             item.textViewBookTitle.text = book.title
+            item.textViewAuthor.text = book.author
+            item.textViewGenre.text = book.genre
         }
 }
