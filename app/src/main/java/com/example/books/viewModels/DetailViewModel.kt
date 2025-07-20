@@ -1,4 +1,4 @@
-package com.example.books.ui.viewholders
+package com.example.books.viewModels
 
 import androidx.lifecycle.ViewModel
 
