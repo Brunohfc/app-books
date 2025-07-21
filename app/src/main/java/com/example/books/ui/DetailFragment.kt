@@ -22,11 +22,19 @@ class DetailFragment : Fragment() {
     ): View {
         _binding = FragmentDetailBinding.inflate(inflater, container,false)
 
+        arrowBack()
+
         return binding.root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun arrowBack(){
+        binding.imageViewArrowBack.setOnClickListener{
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 }
