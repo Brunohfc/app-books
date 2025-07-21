@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.books.R
 import com.example.books.databinding.FragmentHomeBinding
+import com.example.books.helpers.BookConstants
 import com.example.books.ui.adapters.BookAdapter
 import com.example.books.ui.listeners.BookListener
 import com.example.books.viewModels.HomeViewModel
@@ -65,7 +66,11 @@ class HomeFragment : Fragment() {
     private fun attachListener(){
         adapter.attachListener(object : BookListener{
             override fun onClick(id: Int) {
-                findNavController().navigate(R.id.navigation_details)
+//                mandando o id do livro para o fragment especifico
+                val bundle = Bundle()
+                bundle.putInt(BookConstants.KEY.BOOK_ID, id)
+
+                findNavController().navigate(R.id.navigation_details, bundle)
 
             }
 

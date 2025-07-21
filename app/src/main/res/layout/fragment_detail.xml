@@ -92,6 +92,7 @@
         app:layout_constraintTop_toBottomOf="@id/textView_genreValue"/>
 
     <CheckBox
+        android:id="@+id/checkox_favorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/textView_favorite"
@@ -100,6 +101,7 @@
         />
 
     <Button
+        android:id="@+id/button_removeBook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Remover Livro"
