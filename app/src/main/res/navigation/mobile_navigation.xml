@@ -17,5 +17,11 @@
         android:label="@string/title_favorites"
         tools:layout="@layout/fragment_favorites" />
 
+    <fragment
+        android:id="@+id/navigation_details"
+        android:name="com.example.books.ui.DetailFragment"
+        android:label="@string/title_book_details"
+        tools:layout="@layout/fragment_detail" />
+
 
 </navigation>

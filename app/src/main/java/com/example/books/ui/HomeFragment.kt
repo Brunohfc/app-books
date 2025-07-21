@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.books.R
 import com.example.books.databinding.FragmentHomeBinding
 import com.example.books.ui.adapters.BookAdapter
+import com.example.books.ui.listeners.BookListener
 import com.example.books.viewModels.HomeViewModel
 
 class HomeFragment : Fragment() {
@@ -45,6 +46,8 @@ class HomeFragment : Fragment() {
         homeViewModel.getBooks()
         setObserve() // observando as mudanca na homeView
 
+        attachListener()
+
         return binding.root
     }
 
@@ -57,5 +60,15 @@ class HomeFragment : Fragment() {
         homeViewModel.books.observe(viewLifecycleOwner){
             adapter.updateBooks(it)
         }
+    }
+
+    private fun attachListener(){
+        adapter.attachListener(object : BookListener{
+            override fun onClick(id: Int) {
+                findNavController().navigate(R.id.navigation_details)
+
+            }
+
+        })
     }
 }
