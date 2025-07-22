@@ -14,7 +14,14 @@ class DetailViewModel : ViewModel() {
     private val _book = MutableLiveData<BookEntity>()
     val book: LiveData<BookEntity> = _book
 
+    private val _bookRemove = MutableLiveData<Boolean>()
+    val bookRemove: LiveData<Boolean> = _bookRemove
+
     fun getBookById(id: Int){
         _book.value = repository.getOneBook(id)
+    }
+
+    fun removeBookById(id: Int){
+        _bookRemove.value = repository.deleteById(id)
     }
 }
