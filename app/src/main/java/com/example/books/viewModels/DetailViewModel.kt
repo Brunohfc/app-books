@@ -24,4 +24,8 @@ class DetailViewModel : ViewModel() {
     fun removeBookById(id: Int){
         _bookRemove.value = repository.deleteById(id)
     }
+
+    fun favoriteBookById(id: Int){
+        repository.toggleFavoriteBook(id)
+    }
 }

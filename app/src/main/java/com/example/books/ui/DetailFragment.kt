@@ -71,6 +71,10 @@ class DetailFragment : Fragment() {
         binding.buttonRemoveBook.setOnClickListener {
             removeBook()
         }
+
+        binding.checkoxFavorite.setOnClickListener{
+            favoriteBook()
+        }
     }
 
     private fun removeBook() {
@@ -89,6 +93,10 @@ class DetailFragment : Fragment() {
     private fun actionBack(){
         requireActivity().supportFragmentManager.popBackStack()
     }
+    private fun favoriteBook(){
+        viewModel.favoriteBookById(bookId)
+    }
+
 
     private fun setBackgroundOnGenreDetail(genre: String) {
         val TERROR = "Terror"
