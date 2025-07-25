@@ -24,4 +24,4 @@ O aplicativo permite aos usuários visualizar uma lista de livros, marcar livros
 
 **Diagrama Simplificado do Ciclo de Vida da Activity:**
 
-![Diagrama do Ciclo de Vida da Activity](assets/kotlin lifecycle.png)
+![Diagrama do Ciclo de Vida da Activity](assets/kotlin_lifecycle.png)
