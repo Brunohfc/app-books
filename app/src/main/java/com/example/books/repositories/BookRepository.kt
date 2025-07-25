@@ -1,14 +1,32 @@
 package com.example.books.repositories
 
 import com.example.books.entities.BookEntity
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.internal.synchronized
 
-class BookRepository {
+class BookRepository private constructor(){
 
     private val books = mutableListOf<BookEntity>()
 
     init {
         books.addAll(getMockBooks())
     }
+
+    companion object{
+        private lateinit var instance : BookRepository
+
+        @OptIn(InternalCoroutinesApi::class)
+         fun getInstance(): BookRepository {
+            synchronized(this){
+                if(!::instance.isInitialized){
+                    instance = BookRepository()
+                }
+
+            }
+            return instance
+        }
+    }
+
 
     private fun getMockBooks(): List<BookEntity> {
         return listOf(
