@@ -52,6 +52,12 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+//    quando iniciar o fragment sempre vai pegar o mais recente
+    override fun onResume() {
+        super.onResume()
+        homeViewModel.getBooks()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
