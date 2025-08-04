@@ -80,6 +80,11 @@ class HomeFragment : Fragment() {
 
             }
 
+            override fun onFavoriteClick(id: Int) {
+                homeViewModel.favorite(id)
+                homeViewModel.getBooks()
+            }
+
         })
     }
 }
