@@ -31,6 +31,7 @@ class BookAdapter : RecyclerView.Adapter<BookViewHolder>() {
 
     fun updateBooks(list: List<BookEntity>){
         books = list
+        notifyDataSetChanged()
     }
 
     fun attachListener(listener: BookListener){
