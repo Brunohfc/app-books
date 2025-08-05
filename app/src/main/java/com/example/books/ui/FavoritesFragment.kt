@@ -59,7 +59,20 @@ class FavoritesFragment : Fragment() {
 
     private fun setObserve(){
         favoritesViewModel.books.observe(viewLifecycleOwner){
-            adapter.updateBooks(it)
+
+//          sem livros favoritos na lista
+            if(it.isEmpty()){
+                binding.imageviewNoBooks.visibility = View.VISIBLE
+                binding.textviewNoBooks.visibility = View.VISIBLE
+                binding.recyclerFavoriteBooks.visibility = View.GONE
+            }
+//            com livros favoritos
+            else{
+                binding.imageviewNoBooks.visibility = View.GONE
+                binding.textviewNoBooks.visibility = View.GONE
+                binding.recyclerFavoriteBooks.visibility = View.VISIBLE
+                adapter.updateBooks(it)
+            }
         }
     }
 
