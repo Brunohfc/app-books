@@ -10,24 +10,6 @@ import com.example.books.helpers.DatabaseConstants
 class DatabaseHelper(context: Context) :
     SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
 
-
-
-        companion object{
-            private const val DB_NAME = "BooksDB"
-            private const val DB_VERSION = 1
-
-            private val CREATE_TABLE_BOOKS = """
-                CREATE TABLE ${DatabaseConstants.BOOKS.TABLE_NAME}(
-                    ${DatabaseConstants.BOOKS.COLUMS.ID} INTEGER PRIMARY KEY AUTOINCREMENT,
-                    ${DatabaseConstants.BOOKS.COLUMS.AUTHOR} TEXT NOT NULL,
-                    ${DatabaseConstants.BOOKS.COLUMS.TITLE} TEXT NOT NULL,
-                    ${DatabaseConstants.BOOKS.COLUMS.FAVORITE} INTEGER NOT NULL,
-                    ${DatabaseConstants.BOOKS.COLUMS.GENRE} TEXT NOT NULL
-                );
-                
-            """.trimIndent()
-        }
-
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(CREATE_TABLE_BOOKS)
         insertBooks(db)
@@ -37,12 +19,31 @@ class DatabaseHelper(context: Context) :
         TODO("Not yet implemented")
     }
 
+        companion object{
+            private const val DB_NAME = "BooksDB"
+            private const val DB_VERSION = 1
+
+            private val CREATE_TABLE_BOOKS = """
+                CREATE TABLE ${DatabaseConstants.BOOKS.TABLE_NAME}(
+                    ${DatabaseConstants.BOOKS.COLUMS.ID} INTEGER PRIMARY KEY AUTOINCREMENT,
+                    ${DatabaseConstants.BOOKS.COLUMS.TITLE} TEXT NOT NULL,
+                    ${DatabaseConstants.BOOKS.COLUMS.AUTHOR} TEXT NOT NULL,
+                    ${DatabaseConstants.BOOKS.COLUMS.GENRE} TEXT NOT NULL,
+                    ${DatabaseConstants.BOOKS.COLUMS.FAVORITE} INTEGER NOT NULL
+                );
+                
+            """.trimIndent()
+        }
+
     private fun insertBooks(db: SQLiteDatabase){
+
         val books = getMockBooks()
+
         for(book in books){
             val values = ContentValues().apply {
                 put(DatabaseConstants.BOOKS.COLUMS.ID , book.id)
                 put(DatabaseConstants.BOOKS.COLUMS.TITLE , book.title)
+                put(DatabaseConstants.BOOKS.COLUMS.AUTHOR , book.author)
                 put(DatabaseConstants.BOOKS.COLUMS.GENRE , book.genre)
                 //convertendo boolean para inteiro por causa dos tipos do SQLite
                 put(DatabaseConstants.BOOKS.COLUMS.FAVORITE , if(book.favorite) 1 else 0 )
