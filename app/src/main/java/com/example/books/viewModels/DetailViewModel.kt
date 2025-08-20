@@ -1,11 +1,9 @@
 package com.example.books.viewModels
 
 import android.app.Application
-import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.books.entities.BookEntity
 import com.example.books.repositories.BookRepository
 
@@ -22,7 +20,7 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
     val bookRemove: LiveData<Boolean> = _bookRemove
 
     fun getBookById(id: Int){
-        _book.value = repository.getOneBook(id)
+        _book.value = repository.getOneBookById(id)
     }
 
     fun removeBookById(id: Int){
